@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuicSuite - 安全なローカルファーストAI基盤</title>
+    <meta name="description" content="QuicSuiteは、プライバシーを最優先に設計された分散型AI推論プラットフォームです。ローカルファースト、エンドツーエンド暗号化、超低遅延を実現。">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7c3aed;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--light);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Architecture Section */
+        .architecture {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+        
+        .architecture h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .arch-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        
+        .price-unit {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">🔒 QuicSuite</div>
+            <ul class="nav-links">
+                <li><a href="#features">機能</a></li>
+                <li><a href="#architecture">アーキテクチャ</a></li>
+                <li><a href="#pricing">プラン</a></li>
+                <li><a href="#download">ダウンロード</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>プライバシーファーストの<br>分散型AI推論基盤</h1>
+            <p>ローカル優先、エンドツーエンド暗号化、超低遅延を実現する<br>次世代のAIインフラストラクチャ</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">今すぐダウンロード</a>
+                <a href="https://github.com/quicsuite/quicsuite" class="btn btn-secondary">GitHubで見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>主な特徴</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>完全なプライバシー保護</h3>
+                    <p>デフォルトでローカル推論。データは端末から出ません。Noise IKpsk2によるE2E暗号化で安全な通信を実現。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>超低遅延</h3>
+                    <p>ローカル推論で150ms以下のTTFT、P2P経由でも300ms以下を実現。リアルタイムな対話が可能です。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>分散型ネットワーク</h3>
+                    <p>必要に応じてP2Pネットワークにフォールバック。中央集権的なサービスに依存しません。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>エンタープライズグレードのセキュリティ</h3>
+                    <p>UDS + mTLS、サンドボックス実行、コード署名、公証済み。最高レベルのセキュリティを提供。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>シームレスな統合</h3>
+                    <p>QRコードでiPhoneと瞬時にペアリング。複雑な設定は不要です。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>柔軟な運用モード</h3>
+                    <p>Private-only、Friends、Public Marketの3つのモードから選択可能。用途に応じて切り替えられます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <h2>システムアーキテクチャ</h2>
+            <div class="arch-diagram">
+[iPhone App]
+   │  E2E (Noise over WebRTC)
+   ▼
+[QuicPair (macOS App)]
+   │  UDS/mTLS (localhost)
+   │  └─> [Local Inference] ← (Ollama/llama.cpp/Metal)
+   │
+   └─> [QUIVer-provider Daemon] ── libp2p(QUIC/WebRTC) ── P2P Network
+           │
+           ├─ Private-only: 自分の端末からのジョブのみ（デフォルト）
+           ├─ Friends: ペア済み端末/許可キーのみ
+           └─ Public Market: 有料ジョブを受理（opt-in）
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>料金プラン</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Core</h3>
+                    <div class="price">無料</div>
+                    <ul class="pricing-features">
+                        <li>基本的なP2P接続</li>
+                        <li>手動モデル管理</li>
+                        <li>Private-onlyモード</li>
+                        <li>コミュニティサポート</li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary" style="width: 100%;">ダウンロード</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">¥1,480<span class="price-unit">/月</span></div>
+                    <ul class="pricing-features">
+                        <li>高速起動</li>
+                        <li>自動最適化</li>
+                        <li>マネージド接続</li>
+                        <li>全モード利用可能</li>
+                        <li>優先サポート</li>
+                    </ul>
+                    <a href="#download" class="btn btn-primary" style="width: 100%;">無料で始める</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">お問い合わせ</div>
+                    <ul class="pricing-features">
+                        <li>高度な管理機能</li>
+                        <li>SSO統合</li>
+                        <li>カスタムポリシー</li>
+                        <li>SLA保証</li>
+                        <li>専任サポート</li>
+                    </ul>
+                    <a href="mailto:sales@quicsuite.com" class="btn btn-secondary" style="width: 100%;">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download" style="padding: 4rem 0; background: var(--light);">
+        <div class="container" style="text-align: center;">
+            <h2>今すぐ始める</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem;">macOS用の統合インストーラーをダウンロード</p>
+            <div class="cta-buttons">
+                <a href="/releases/QuicSuite-1.0.0.dmg" class="btn btn-primary">
+                    🍎 macOS版をダウンロード
+                </a>
+                <a href="https://apps.apple.com/app/quicpair" class="btn btn-secondary">
+                    📱 iOS版（App Store）
+                </a>
+            </div>
+            <p style="margin-top: 2rem; color: var(--gray);">
+                macOS 13.0以降対応 | ユニバーサルバイナリ（Apple Silicon/Intel）
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/quicsuite/quicsuite">GitHub</a>
+                <a href="/docs">ドキュメント</a>
+                <a href="/privacy">プライバシーポリシー</a>
+                <a href="/terms">利用規約</a>
+                <a href="mailto:support@quicsuite.com">サポート</a>
+            </div>
+            <p>&copy; 2024 QuicSuite. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
