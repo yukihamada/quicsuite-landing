@@ -5,18 +5,8 @@ compatibility_date = "2024-01-01"
 bucket = "./"
 
 [[redirects]]
-from = "/releases/*"
-to = "https://github.com/quicsuite/quicsuite/releases/download/:splat"
-status = 302
-
-[[redirects]]
-from = "/docs"
-to = "https://docs.quicsuite.com"
-status = 302
-
-[[redirects]]
-from = "/github"
-to = "https://github.com/quicsuite/quicsuite"
+from = "/download"
+to = "https://github.com/yukihamada/quicsuite/releases/download/v1.0.0/QuicSuite-1.0.0-installer.dmg"
 status = 302
 
 [[headers]]

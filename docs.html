@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドキュメント - QuicSuite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        h1, h2, h3 {
+            color: #2563eb;
+        }
+        h1 {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        pre {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        code {
+            background: #e5e7eb;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .nav {
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #2563eb;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← ホームに戻る</a>
+    </div>
+
+    <h1>QuicSuite ドキュメント</h1>
+
+    <h2>インストール方法</h2>
+    
+    <h3>macOS</h3>
+    <ol>
+        <li><a href="https://github.com/yukihamada/quicsuite/releases/download/v1.0.0/QuicSuite-1.0.0-installer.dmg">QuicSuite-1.0.0-installer.dmg</a>をダウンロード</li>
+        <li>DMGファイルをダブルクリックして開く</li>
+        <li><code>Install_QuicSuite.command</code>をダブルクリック</li>
+        <li>管理者パスワードを入力</li>
+        <li>インストール完了後、QuicPair.appが自動起動します</li>
+    </ol>
+
+    <h3>初回起動時の注意</h3>
+    <p>macOSのセキュリティ機能により、初回起動時は以下の手順が必要です：</p>
+    <ol>
+        <li>QuicPair.appを右クリック</li>
+        <li>「開く」を選択</li>
+        <li>警告ダイアログで「開く」をクリック</li>
+    </ol>
+
+    <h2>基本的な使い方</h2>
+
+    <h3>iPhoneとのペアリング</h3>
+    <ol>
+        <li>QuicPair.appで「Start Pairing」をクリック</li>
+        <li>表示されたQRコードをiPhoneで読み取り</li>
+        <li>自動的に安全な接続が確立されます</li>
+    </ol>
+
+    <h3>動作モードの変更</h3>
+    <pre><code># 現在のステータスを確認
+qvctl status
+
+# プライベートモード（デフォルト）
+qvctl mode set private
+
+# フレンドモード（許可された端末のみ）
+qvctl mode set friends
+
+# パブリックモード（収益化可能）
+qvctl mode set public</code></pre>
+
+    <h3>モデル管理</h3>
+    <pre><code># 利用可能なモデルを確認
+qvctl models list
+
+# モデルをプリロード
+qvctl models prefetch llama3.1-8b-instruct-q4k</code></pre>
+
+    <h2>アーキテクチャ</h2>
+    
+    <h3>コンポーネント構成</h3>
+    <ul>
+        <li><strong>QuicPair</strong>: macOS/iOSネイティブアプリ（Swift）</li>
+        <li><strong>QUIVer-provider</strong>: P2Pネットワークデーモン（Go）</li>
+        <li><strong>qvctl</strong>: コマンドラインツール</li>
+    </ul>
+
+    <h3>セキュリティ</h3>
+    <ul>
+        <li>エンドツーエンド暗号化（Noise Protocol）</li>
+        <li>macOS Keychainによる鍵管理</li>
+        <li>UDS + mTLSによるプロセス間通信</li>
+        <li>サンドボックス実行環境</li>
+    </ul>
+
+    <h2>トラブルシューティング</h2>
+
+    <h3>QuicPair.appが起動しない</h3>
+    <p>システム環境設定 → セキュリティとプライバシー → 一般で「このまま開く」をクリック</p>
+
+    <h3>ペアリングができない</h3>
+    <ul>
+        <li>両デバイスが同じネットワークに接続されているか確認</li>
+        <li>ファイアウォール設定を確認</li>
+        <li>QuicPairを再起動してみる</li>
+    </ul>
+
+    <h3>qvctlコマンドが見つからない</h3>
+    <pre><code>echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc</code></pre>
+
+    <h2>アンインストール</h2>
+    <pre><code>sudo rm -rf /usr/local/quicsuite
+sudo rm -f /usr/local/bin/qvctl
+rm -rf /Applications/QuicPair.app</code></pre>
+
+    <h2>サポート</h2>
+    <p>問題が解決しない場合は、<a href="https://github.com/yukihamada/quicsuite/issues">GitHubのIssues</a>でお問い合わせください。</p>
+</body>
+</html>

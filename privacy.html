@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー - QuicSuite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        h1, h2 {
+            color: #2563eb;
+        }
+        h1 {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        .nav {
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← ホームに戻る</a>
+    </div>
+
+    <h1>プライバシーポリシー</h1>
+    <p>最終更新日: 2024年8月20日</p>
+
+    <div class="highlight">
+        <strong>🔒 QuicSuiteの基本原則</strong><br>
+        あなたのデータは、あなたのデバイスに。私たちは一切のユーザーデータを収集、送信、保存しません。
+    </div>
+
+    <h2>1. 収集する情報</h2>
+    <p><strong>QuicSuiteは個人情報を一切収集しません。</strong></p>
+    
+    <h3>収集しない情報：</h3>
+    <ul>
+        <li>AI との会話内容</li>
+        <li>使用しているモデル情報</li>
+        <li>デバイス識別情報</li>
+        <li>IPアドレス</li>
+        <li>位置情報</li>
+        <li>使用統計</li>
+    </ul>
+
+    <h2>2. データの保存場所</h2>
+    <p>すべてのデータはローカルに保存されます：</p>
+    <ul>
+        <li><strong>会話履歴</strong>: あなたのデバイスのみ</li>
+        <li><strong>設定情報</strong>: macOS Keychainまたはローカルファイル</li>
+        <li><strong>モデルファイル</strong>: ローカルストレージ</li>
+        <li><strong>暗号化キー</strong>: macOS Keychain（エクスポート不可）</li>
+    </ul>
+
+    <h2>3. データの送信</h2>
+    <h3>Private-onlyモード（デフォルト）</h3>
+    <ul>
+        <li>データは一切外部に送信されません</li>
+        <li>すべての処理はローカルで完結</li>
+    </ul>
+
+    <h3>Friends/Publicモード（オプトイン）</h3>
+    <ul>
+        <li>明示的に有効化した場合のみ</li>
+        <li>エンドツーエンド暗号化で保護</li>
+        <li>中継サーバーはデータ内容を読めません</li>
+    </ul>
+
+    <h2>4. サードパーティーサービス</h2>
+    <p>QuicSuiteは以下のサービスを<strong>使用しません</strong>：</p>
+    <ul>
+        <li>分析サービス（Google Analytics等）</li>
+        <li>広告ネットワーク</li>
+        <li>クラッシュレポートサービス</li>
+        <li>外部APIサービス</li>
+    </ul>
+
+    <h2>5. セキュリティ対策</h2>
+    <ul>
+        <li><strong>Noise Protocol (IKpsk2)</strong>: 軍事レベルの暗号化</li>
+        <li><strong>UDS + mTLS</strong>: プロセス間通信の保護</li>
+        <li><strong>サンドボックス実行</strong>: AI推論の隔離環境</li>
+        <li><strong>コード署名</strong>: Apple公証済み</li>
+    </ul>
+
+    <h2>6. データの削除</h2>
+    <p>いつでもすべてのデータを削除できます：</p>
+    <ol>
+        <li>QuicPairアプリ内の設定から削除</li>
+        <li>または、アプリケーションをアンインストール</li>
+    </ol>
+
+    <h2>7. 子供のプライバシー</h2>
+    <p>QuicSuiteは13歳未満の子供から情報を収集しません。そもそも誰からも情報を収集しないためです。</p>
+
+    <h2>8. プライバシーポリシーの変更</h2>
+    <p>このポリシーを変更する場合は、このページで通知します。ただし、「データを収集しない」という基本原則は変更しません。</p>
+
+    <h2>9. オープンソース</h2>
+    <p>QuicSuiteはオープンソースソフトウェアです。コードを確認して、私たちの主張が正しいことを自分で検証できます。</p>
+    <p>ソースコード: <a href="https://github.com/yukihamada/quicsuite">https://github.com/yukihamada/quicsuite</a></p>
+
+    <h2>10. お問い合わせ</h2>
+    <p>プライバシーに関するご質問は、GitHubのIssuesまたは以下のメールアドレスまで：</p>
+    <p>privacy@quicsuite.com</p>
+
+    <div class="highlight">
+        <strong>まとめ</strong><br>
+        QuicSuiteは「ローカルファースト」を本気で実践しています。あなたのデータはあなたのもの。それ以上でも、それ以下でもありません。
+    </div>
+</body>
+</html>
